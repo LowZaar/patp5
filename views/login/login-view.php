@@ -1,115 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-BR">
 <head>
-    <!-- Required meta tags-->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="au theme template">
-    <meta name="author" content="Hau Nguyen">
-    <meta name="keywords" content="au theme template">
-
-    <!-- Title Page-->
     <title>Login</title>
-
-    <!-- Fontfaces CSS-->
-    <link href="<?= HOME_URI ?>/views/_css/font-face.css" rel="stylesheet" media="all">
-    <link href="<?= HOME_URI ?>/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
-    <link href="<?= HOME_URI ?>/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
-    <link href="<?= HOME_URI ?>/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-
-    <!-- Bootstrap CSS-->
-    <link href="<?= HOME_URI ?>/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
-
-    <!-- <?= HOME_URI ?>/vendor CSS-->
-    <link href="<?= HOME_URI ?>/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
-    <link href="<?= HOME_URI ?>/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
-    <link href="<?= HOME_URI ?>/vendor/wow/animate.css" rel="stylesheet" media="all">
-    <link href="<?= HOME_URI ?>/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
-    <link href="<?= HOME_URI ?>/vendor/slick/slick.css" rel="stylesheet" media="all">
-    <link href="<?= HOME_URI ?>/vendor/select2/select2.min.css" rel="stylesheet" media="all">
-    <link href="<?= HOME_URI ?>/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
-
-    <!-- Main CSS-->
-    <link href="<?= HOME_URI ?>/views/_css/theme.css" rel="stylesheet" media="all">
-
-</head>
-
-<body class="animsition">
-    <div class="page-wrapper">
-        <div class="page-content--bge5">
-            <div class="page">
-                <div class="login-wrap">
-                    <div class="login-content">
-                        <div class="login-logo">
-                            <img class="img-logo" src="<?= HOME_URI ?>/views/_images/logo.png" alt="PATP">
-                        </div>
-                        <div class="login-form">
-                            <form action="" method="post">
-                                <div class="form-group m-b-10">
-                                    <label>E-mail</label>
-                                    <input class="au-input au-input--full" type="text" name="userdata[email]" placeholder="E-mail">
-                                </div>
-                                <div class="form-group m-b-20">
-                                    <label>Senha</label>
-                                    <input class="au-input au-input--full" type="password" name="userdata[password]" placeholder="Senha">
-                                </div>
-                                <!-- <div class="login-checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember">Remember Me
-                                    </label>
-                                    <label>
-                                        <a href="#">Forgotten Password?</a>
-                                    </label>
-                                </div> -->
-                                <p class="m-b-10"><?= $this->login_error ?></p>
-                                <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">Entrar</button>
-                                <!-- <div class="social-login-content">
-                                    <div class="social-button">
-                                        <button class="au-btn au-btn--block au-btn--blue m-b-20">sign in with facebook</button>
-                                        <button class="au-btn au-btn--block au-btn--blue2">sign in with twitter</button>
-                                    </div>
-                                </div> -->
-                            </form>
-                            <!-- <div class="register-link">
-                                <p>
-                                    Don't you have account?
-                                    <a href="#">Sign Up Here</a>
-                                </p>
-                            </div> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+    <!-- Meta tag Keywords -->
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+        function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- css files -->
+    <link href="<?=HOME_URI?>/views/_css/stylelogin.css" rel="stylesheet" type="text/css" media="all">
+    <!-- online-fonts -->
+    <link href="//fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900iSlabo+27px&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
+<body>
+<!--header-->
+<div class="agileheader">
+    <h1>Logue-se</h1>
+</div>
+<!--main-->
+<div class="main-w3l">
+    <div class="w3layouts-main">
+        <form>
+            <input id="email" placeholder="E-mail" name="email" type="email" required=""/>
+            <input id="senha" placeholder="Senha" name="password" type="password"/>
+            <div class="clear"></div>
+            <div id="errorlogin"></div>
+            <input type="button" onclick="verifyLogin()" value="login" name="login">
+        </form>
+        <p>Sem uma conta? <a href="<?=HOME_URI?>/cadastro">Registre-se!</a></p>
+    
     </div>
-
-    <!-- Jquery JS-->
-    <script src="<?= HOME_URI ?>/vendor/jquery-3.2.1.min.js"></script>
-    <!-- Bootstrap JS-->
-    <script src="<?= HOME_URI ?>/vendor/bootstrap-4.1/popper.min.js"></script>
-    <script src="<?= HOME_URI ?>/vendor/bootstrap-4.1/bootstrap.min.js"></script>
-    <!-- Vendor JS       -->
-    <script src="<?= HOME_URI ?>/vendor/slick/slick.min.js">
-    </script>
-    <script src="<?= HOME_URI ?>/vendor/wow/wow.min.js"></script>
-    <script src="<?= HOME_URI ?>/vendor/animsition/animsition.min.js"></script>
-    <script src="<?= HOME_URI ?>/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
-    </script>
-    <script src="<?= HOME_URI ?>/vendor/counter-up/jquery.waypoints.min.js"></script>
-    <script src="<?= HOME_URI ?>/vendor/counter-up/jquery.counterup.min.js">
-    </script>
-    <script src="<?= HOME_URI ?>/vendor/circle-progress/circle-progress.min.js"></script>
-    <script src="<?= HOME_URI ?>/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="<?= HOME_URI ?>/vendor/chartjs/Chart.bundle.min.js"></script>
-    <script src="<?= HOME_URI ?>/vendor/select2/select2.min.js">
-    </script>
-
-    <!-- Main JS-->
-    <script src="<?= HOME_URI ?>/views/_js/main.js"></script>
-
+</div>
 </body>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    function verifyLogin() {
+        $.ajax({
+            method: "POST",
+            url: "<?=HOME_URI?>/login/logar",
+            data: {
+                email: $("#email").val(),
+                senha: $("#senha").val()
+            },
+            success: function(data){
+                let result = JSON.parse(data);
+                if (result.status === "error"){
+                    $("#errorlogin").html("<h4 style='color: red'>" + result.message + "</h4>")
+                } else {
+                    console.log(1);
+                    window.location.href = "<?=HOME_URI?>/"
+                }
+            }
+        })
+    }
+</script>
 </html>
-<!-- end document-->

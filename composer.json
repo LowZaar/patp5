@@ -3,7 +3,9 @@
     "description": "Gestpr de horarios",
 
     "require": {
-        
-        "symfony/event-dispatcher": "^5.2"
+        "symfony/var-dumper": "^5.4",
+        "symfony/event-dispatcher": "^5.2",
+        "ext-json": "*",
+        "ext-pdo": "*"
     }
 }
