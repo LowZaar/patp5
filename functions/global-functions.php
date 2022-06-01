@@ -1,0 +1,53 @@
+<?php
+/**
+ * Verifica chaves de arrays
+ *
+ * Verifica se a chave existe no array e se ela tem algum valor.
+ * Obs.: Essa função está no escopo global, pois, vamos precisar muito da mesma.
+ *
+ * @param array  $array O array
+ * @param string $key   A chave do array
+ * @return string|null  O valor da chave do array ou nulo
+ */
+function chk_array($array, $key)
+{
+    // Verifica se a chave existe no array
+    if (isset($array[$key]) && !empty($array[ $key ])) {
+        // Retorna o valor da chave
+        return $array[ $key ];
+    }
+    
+    // Retorna nulo por padrão
+    return null;
+} // chk_array
+
+/**
+ * Função para carregar automaticamente todas as classes padrão
+ * Ver: http://php.net/manual/pt_BR/function.autoload.php.
+ * Nossas classes estão na pasta classes/.
+ * O nome do arquivo deverá ser class-NomeDaClasse.php.
+ * Por exemplo: para a classe TutsupMVC, o arquivo vai chamar class-TutsupMVC.php
+ */
+spl_autoload_register(function ($className) {
+    // Caminho para as classes com namespace
+    $namespace = substr($className, strrpos($className, '\\') + 1);
+    $path = ABSPATH . '/classes/class-' . $namespace . '.php';
+    if (file_exists($path)) {
+        require_once $path;
+        return;
+    }
+
+    // Caminho para as classes sem namespace
+    $path = ABSPATH . '/classes/class-' . $className . '.php';
+    if (file_exists($path)) {
+        require_once $path;
+        return;
+    }
+    
+    //throw new \Exception("Classe " . $className . " não encontrada!");
+});
+
+function format_BRL($valor)
+{
+    return "R$ ".number_format($valor, 2, ",", ".");
+}
