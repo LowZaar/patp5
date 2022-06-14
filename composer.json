@@ -4,12 +4,6 @@
 
     "require": {
         "symfony/var-dumper": "^5.4",
-<<<<<<< HEAD
         "symfony/event-dispatcher": "^5.2"
-=======
-        "symfony/event-dispatcher": "^5.2",
-        "ext-json": "*",
-        "ext-pdo": "*"
->>>>>>> 806650a172693e8d76c7860bae2c4de5b160a4a8
     }
 }

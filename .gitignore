@@ -41,5 +41,4 @@ Icon
 node_modules/
 vendor/
 views/_uploads/historico/*
-
 config.php

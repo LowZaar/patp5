@@ -1,6 +1,8 @@
 <div class="container-fluid">
-  <div class="main-content">
-      <div id="calendar" class="w-100 h-100"></div>
+  <div class="main-content col-12 d-flex">
+    <div id="calendar" class="align-items-stretch w-100 h-75 pt-5">
+
+    </div>
   </div>
 </div>
 
@@ -9,20 +11,22 @@
   var $calEl = $('#calendar').tuiCalendar({
     defaultView: 'week',
     taskView: false,
+    useCreationPopup: true,
+    useDetailPopup: true,
     template: {
       monthDayname: function(dayname) {
         return '<span class="calendar-week-dayname-name">' + dayname.label + '</span>';
       }
     },
     month: {
-        daynames: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
-        startDayOfWeek: 1,
-        narrowWeekend: false
+      daynames: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+      startDayOfWeek: 1,
+      narrowWeekend: false
     },
     week: {
-        daynames: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
-        startDayOfWeek: 1,
-        narrowWeekend: false
+      daynames: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+      startDayOfWeek: 1,
+      narrowWeekend: false
     }
   });
 
@@ -52,16 +56,52 @@
   calendar.on('clickDayname', function(event) {
     console.log(event)
     if (calendar.getViewName() === 'week') {
-        calendar.setDate(new Date(event.date));
-        calendar.changeView('day', true);
+      calendar.setDate(new Date(event.date));
+      calendar.changeView('day', true);
     }
   });
 
-  calendar.on('beforeUpdateSchedule', function(event) {
-    var schedule = event.schedule;
-    var changes = event.changes;
-    console.log(schedule);
-    console.log(changes);
-    calendar.updateSchedule(schedule.id, schedule.calendarId, changes);
+  let popup = calendar.openCreationPopup(function(event){
+    var startTime = event.start;
+    var endTime = event.end;
+    var isAllDay = event.isAllDay;
+    var guide = event.guide;
+    var triggerEventName = event.triggerEventName;
+    var schedule;
+
+    calendar.createSchedules([
+      {
+        id: '1',
+        calendarId: '1',
+        
+      }
+    ])
+
   });
+
+  calendar.on('beforeCreateSchedule', function(event) {
+    var startTime = event.start;
+    var endTime = event.end;
+    var isAllDay = event.isAllDay;
+    var guide = event.guide;
+    var triggerEventName = event.triggerEventName;
+    var schedule;
+
+    if (triggerEventName === 'dblclick') {
+      // open writing detail schedule popup
+      schedule = {
+        calendarId: '1',
+        title: 'asdfa',
+        category: 'time',
+        dueDateClass: '',
+        start: startTime,
+        end: endTime
+      };
+      
+
+      
+    }
+  });
+
+
 </script>
