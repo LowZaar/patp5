@@ -58,38 +58,27 @@
             <ul class="list-unstyled navbar__list">
                 <li class="active has-sub">
                     <a href="<?= HOME_URI ?>">
-                        <i class="fa fa-home"></i>Dashboard
+                        <i class="fa fa-calendar-o" aria-hidden="true"></i> Calendário
                     </a>
                 </li>
-            
-                    <li class="has-sub">
-                        <a class="js-arrow open" href="#">
-                            <i class="fa fa-users"></i>Contas
-                        </a>
-                        <ul class="list-unstyled navbar__sub-list js-sub-list">
-                            <li>
-                                <a href="<?= HOME_URI ?>/contas/">Contas</a>
-                            </li>
-                            <li>
-                                <a href="<?= HOME_URI ?>/implantacao/">Contas implantadas</a>
-                            </li>
-                            <li>
-                                <a href="<?= HOME_URI ?>/implantacao/envia-email">Envia e-mail</a>
-                            </li>
-                        </ul>
-                    </li>
-               
-                    <li>
-                        <a href="<?= HOME_URI ?>/financeiro/">
-                            <i class="fa fa-usd"></i>Financeiro
-                        </a>
-                    </li>
 
-                    <li>
-                        <a href="<?= HOME_URI ?>/usuarios/">
-                            <i class="fa fa-users"></i>Usuários
-                        </a>
-                    </li>
+                <li>
+                    <a href="<?= HOME_URI ?>/solicitacao/">
+                        <i class="fa fa-sticky-note-o" aria-hidden="true"></i> Solicitações Pendentes
+                    </a>
+                </li>
+               
+<!--                <li>-->
+<!--                    <a href="--><?//= HOME_URI ?><!--/financeiro/">-->
+<!--                        <i class="fa fa-usd"></i>Financeiro-->
+<!--                    </a>-->
+<!--                </li>-->
+
+                <li>
+                    <a href="<?= HOME_URI ?>/usuarios/">
+                        <i class="fa fa-users"></i>Usuários
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>

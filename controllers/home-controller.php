@@ -11,9 +11,22 @@ use patp\Classes\MainController;
  */
 class HomeController extends MainController
 {
-
+    
+    /**
+     * @var mixed|void
+     */
+    private $model;
+    
+    public function __construct($parametros = array())
+    {
+        parent::__construct($parametros);
+        $this->model = $this->loadModel('home/home-model');
+    
+    }
+    
     public function index()
     {
+        
         // Título da página
         $this->title = 'Home';
 
@@ -29,15 +42,31 @@ class HomeController extends MainController
             return;
         } */
         
-        $parametros = ( func_num_args() >= 1 ) ? func_get_arg(0) : array();
+        if (!empty($_GET)) {
+           $_SESSION['calendar'] = encrypt_decrypt('decrypt', $_GET['calendar']);
+            
+            require ABSPATH . '/views/_includes/header.php';
+            require ABSPATH . '/views/_includes/menu.php';
+            require ABSPATH . '/views/home/home-view.php';
+            require ABSPATH . '/views/_includes/footer.php';
+        } else {
+            unset($_SESSION['calendar']);
+            
+            require ABSPATH . '/views/_includes/header.php';
+            require ABSPATH . '/views/_includes/menu.php';
+            require ABSPATH . '/views/home/home-view.php';
+            require ABSPATH . '/views/_includes/footer.php';
+        }
+    }
     
-        // Essa página não precisa de modelo (model)
-        $modelo = $this->loadModel('home/home-model');
+    public function retornaCalendario()
+    {
+        if (isset($_SESSION['calendar'])) {
+            $return = $this->model->retornaDataCalendario($_SESSION['calendar']);
+        } else {
+            $return = $this->model->retornaDataCalendario($_SESSION['user']['id']);
+        }
         
-        require ABSPATH . '/views/_includes/header.php';
-        require ABSPATH . '/views/_includes/menu.php';
-        require ABSPATH . '/views/home/home-view.php';
-        require ABSPATH . '/views/_includes/footer.php';
-        
+        echo json_encode($return);
     }
 }
