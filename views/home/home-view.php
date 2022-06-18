@@ -6,102 +6,141 @@
   </div>
 </div>
 
+<!-- Modal Nova Solicitacao -->
+<div class="modal fade" id="solicitacaoModal" tabindex="-1" role="dialog" aria-labelledby="solicitacaoModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="solicitacaoModalTitle">Nova Solicitação de Agenda</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="titulo">Nome do Evento</label>
+          <input type="text" name="" id="titulo" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="horarioInicio">Inicio do Evento</label>
+          <input type="text" name="" id="horarioInicio" readonly class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="horarioFim">Final do Evento</label>
+          <input type="text" name="" id="horarioFim" readonly class="form-control">
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="save">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal Detalhes de Evento -->
+<div class="modal fade" id="detalhesEvento" tabindex="-1" role="dialog" aria-labelledby="detalhesEventoTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="detalhesEventoTitle">Nova Solicitação de Agenda</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="titulo">Nome do Evento</label>
+          <input type="text" name="" id="titulo" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="horarioInicio">Inicio do Evento</label>
+          <input type="text" name="" id="detalheInicio" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="horarioFim">Final do Evento</label>
+          <input type="text" name="" id="detalheFim" class="form-control">
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
-  var $calEl = $('#calendar').tuiCalendar({
-    defaultView: 'week',
-    taskView: false,
-    useCreationPopup: true,
-    useDetailPopup: true,
-    template: {
-      monthDayname: function(dayname) {
-        return '<span class="calendar-week-dayname-name">' + dayname.label + '</span>';
-      }
-    },
-    month: {
-      daynames: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
-      startDayOfWeek: 1,
-      narrowWeekend: false
-    },
-    week: {
-      daynames: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
-      startDayOfWeek: 1,
-      narrowWeekend: false
-    }
-  });
+  document.addEventListener('DOMContentLoaded', function() {
+    let calendarEl = document.getElementById('calendar');
 
-  var calendar = $calEl.data('tuiCalendar');
+    let calendar = new FullCalendar.Calendar(calendarEl, {
+      locale: 'pt-br',
+      initialView: 'timeGridWeek',
+      initialDate: new Date(),
+      allDaySlot: true,
+      selectable: true,
+      selectOverlap: false,
+      eventOverlap: false,
+      buttonIcons: {
+        prev: 'chevron-left',
+        next: 'chevron-right'
+      },
+      headerToolbar: {
+        left: 'prev next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+      },
+      events: [{
+          id: 'a',
+          title: 'my event',
+          start: '2022-06-07',
+          end: '2022-06-08',
+          display: 'background'
+        }],
+      eventClick: function(info) {
 
-  calendar.createSchedules([{
-      id: '1',
-      calendarId: '1',
-      title: 'my schedule',
-      category: 'time',
-      dueDateClass: '',
-      start: '2022-06-01T22:30:00+09:00',
-      end: '2022-06-02T02:30:00+09:00'
-    },
-    {
-      id: '2',
-      calendarId: '1',
-      title: 'second schedule',
-      category: 'time',
-      dueDateClass: '',
-      start: '2022-06-01T19:00:00+09:00',
-      end: '2022-06-01T21:30:00+09:00',
-      isReadOnly: true // schedule is read-only
-    }
-  ]);
-
-  calendar.on('clickDayname', function(event) {
-    console.log(event)
-    if (calendar.getViewName() === 'week') {
-      calendar.setDate(new Date(event.date));
-      calendar.changeView('day', true);
-    }
-  });
-
-  let popup = calendar.openCreationPopup(function(event){
-    var startTime = event.start;
-    var endTime = event.end;
-    var isAllDay = event.isAllDay;
-    var guide = event.guide;
-    var triggerEventName = event.triggerEventName;
-    var schedule;
-
-    calendar.createSchedules([
-      {
-        id: '1',
-        calendarId: '1',
+        console.log('click');
+        let modalDetails = $('#detalhesEvento').modal({
+          keyboard: false
+        })
+        $('#eventoInicio').val(info.event.start.toLocaleString('pt-BR'))
+        $('#eventoFim').val(info.event.end.toLocaleString('pt-BR'))
+        modalDetails.modal('show')
+      },
+      select: function(info) {
+        if (!info.event) {
+          let modal = $('#solicitacaoModal').modal({
+            keyboard: false
+          })
+          $('#horarioInicio').val(info.start.toLocaleString('pt-BR'))
+          $('#horarioFim').val(info.end.toLocaleString('pt-BR'))
+          modal.modal('show')
+          
+          $('#save').click(function(){
+            $.ajax({
+              url: '<?= HOME_URI ?>/solicitacao/criar',
+              method: 'POST',
+              data: {
+                  descricao: $('#titulo').val(),
+                  horarioInicio : info.start,
+                  horarioFinal : info.end
+              },
+              success: function(result){
+                console.log(data)
+                showNotificatonModal('success', 'inserido')
+              }
+            })
+          })
         
+        }
       }
-    ])
-
-  });
-
-  calendar.on('beforeCreateSchedule', function(event) {
-    var startTime = event.start;
-    var endTime = event.end;
-    var isAllDay = event.isAllDay;
-    var guide = event.guide;
-    var triggerEventName = event.triggerEventName;
-    var schedule;
-
-    if (triggerEventName === 'dblclick') {
-      // open writing detail schedule popup
-      schedule = {
-        calendarId: '1',
-        title: 'asdfa',
-        category: 'time',
-        dueDateClass: '',
-        start: startTime,
-        end: endTime
-      };
-      
-
-      
-    }
-  });
-
-
+    })
+    calendar.render();
+  })
 </script>

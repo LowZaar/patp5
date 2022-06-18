@@ -20,7 +20,7 @@
 
     <!-- Bootstrap CSS-->
     <link href="<?= HOME_URI ?>/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="all">
-
+    <link href="<?= HOME_URI ?>/node_modules/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" media="all">
     <!-- Vendor CSS-->
     <link href="<?= HOME_URI ?>/node_modules/animsition/dist/css/animsition.min.css" rel="stylesheet" media="all">
     <link href="<?= HOME_URI ?>/node_modules/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
@@ -37,17 +37,11 @@
     <!-- Jquery JS-->
     <script src="<?= HOME_URI ?>/node_modules/jquery/dist/jquery.min.js"></script>
 
-    <!-- Toast Ui Calendar -->
+    <!-- Total Calendar -->
     
-    <script src="https://uicdn.toast.com/tui.code-snippet/v1.5.2/tui-code-snippet.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://uicdn.toast.com/tui-calendar/latest/tui-calendar.css" />
-    <script src="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.css" />
-    <script src="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.css" />
-    <script src="https://uicdn.toast.com/tui-calendar/latest/tui-calendar.js"></script>
-
-
+    <link rel="stylesheet" href="<?= HOME_URI ?>/node_modules/fullcalendar/main.min.css">
+    <script src="<?= HOME_URI ?>/node_modules/fullcalendar/main.min.js"></script>
+    <script src="<?= HOME_URI ?>/node_modules/fullcalendar/locales/pt-br.js"></script>
 
     <script type="text/javascript">
         var HOME_URI = "<?= HOME_URI ?>";
