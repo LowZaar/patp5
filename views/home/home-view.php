@@ -1,3 +1,9 @@
+<style>
+    .fc-event-title {
+        color: #F8F8FF !important;
+    }
+</style>
+
 <div class="container-fluid">
   <div class="main-content col-12 d-flex">
     <div id="calendar" class="align-items-stretch w-100 h-75 pt-5">
@@ -33,8 +39,8 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="save">Save changes</button>
+        <button type="button" class="btn btn-success" id="save">Salvar</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
       </div>
     </div>
   </div>
@@ -87,6 +93,7 @@
       selectable: true,
       selectOverlap: false,
       eventOverlap: false,
+      themeSystem: 'bootStrap5',
       buttonIcons: {
         prev: 'chevron-left',
         next: 'chevron-right'
@@ -96,13 +103,7 @@
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
       },
-      events: [{
-          id: 'a',
-          title: 'my event',
-          start: '2022-06-07',
-          end: '2022-06-08',
-          display: 'background'
-        }],
+      events: '<?=HOME_URI?>/home/retornaCalendario',
       eventClick: function(info) {
 
         console.log('click');
@@ -122,20 +123,28 @@
           $('#horarioFim').val(info.end.toLocaleString('pt-BR'))
           modal.modal('show')
           
-          $('#save').click(function(){
-            $.ajax({
-              url: '<?= HOME_URI ?>/solicitacao/criar',
-              method: 'POST',
-              data: {
-                  descricao: $('#titulo').val(),
-                  horarioInicio : info.start,
-                  horarioFinal : info.end
-              },
-              success: function(result){
-                console.log(data)
-                showNotificatonModal('success', 'inserido')
-              }
-            })
+          $('#save').click(function() {
+            let titulo = $('#titulo').val()
+            
+            if (titulo !== '') {
+                $.ajax({
+                  url: '<?= HOME_URI ?>/solicitacao/criar',
+                  method: 'POST',
+                  data: {
+                      titulo: titulo,
+                      horarioInicio : info.startStr,
+                      horarioFinal : info.endStr
+                  },
+                  success: function(result) {
+                      result = JSON.parse(result)
+                      showNotificatonModal(result.label, result.message, result.type)
+                      $('#titulo').val('')
+                      modal.modal('hide')
+                  }
+                })
+            } else {
+                showNotificatonModal('Erro', 'O Título deve ser preenchido', 'error')
+            }
           })
         
         }

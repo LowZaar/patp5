@@ -59,8 +59,8 @@ class LoginModel extends MainModel
                 'message' => 'E-mail ou senha incorretos!'
             ];
         }
-    
-        $_SESSION = $query;
+        
+        $_SESSION['user'] = $query;
         
         return [
             'status' => 'success',
