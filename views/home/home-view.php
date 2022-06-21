@@ -3,7 +3,6 @@
     color: #F8F8FF !important;
   }
 </style>
-<?php dump($_SESSION) ?>
 <div class="container-fluid">
   <div class="main-content col-12 d-flex">
     <div id="calendar" class="align-items-stretch w-100 h-75 pt-5">
@@ -82,13 +81,13 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    let bizhrs = 1
+    let bizhrs = '<?= $_SESSION['user']['horario'] ?>';
 
-    if (bizhrs == 0) {
+    if (bizhrs == 1) {
       var bizHours = {
         daysOfWeek: [1, 2, 3, 4, 5],
         startTime: '07:00',
-        endTime: '18:00',
+        endTime: '19:00',
       }
 
       var selConstraint = 'businessHours'

@@ -32,14 +32,17 @@ class HomeController extends MainController
     {
         if (!empty($_GET)) {
            $_SESSION['calendar'] = encrypt_decrypt('decrypt', $_GET['calendar']);
-            
+           
+           $configuracoes = $this->model->retornaConfiguracoes($_SESSION['calendar']);
+    
             require ABSPATH . '/views/_includes/header.php';
             require ABSPATH . '/views/_includes/menu.php';
             require ABSPATH . '/views/home/home-view.php';
             require ABSPATH . '/views/_includes/footer.php';
         } else {
             unset($_SESSION['calendar']);
-            
+    
+            $configuracoes = $this->model->retornaConfiguracoes($_SESSION['user']['id']);
             $link = HOME_URI . '?calendar=' . encrypt_decrypt('encrypt', $_SESSION['user']['id']);
             
             require ABSPATH . '/views/_includes/header.php';

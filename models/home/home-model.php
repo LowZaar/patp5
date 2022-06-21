@@ -59,16 +59,17 @@ class HomeModel
         $data_fim = str_replace('T', ' ', explode('-03:00', $_GET['end'])[0]);
         
         $query = $this->db->query("SELECT * FROM Solicitacoes WHERE id_usuario = $id AND status = 1 AND datainicio BETWEEN '$data_inicio' AND '$data_fim'")->fetchAll(PDO::FETCH_ASSOC);
-       
+        $configuracoes = $this->db->query("SELECT titulo, horario, cor, fimDeSemana FROM Usuarios WHERE id = $id")->fetch(PDO::FETCH_ASSOC);
+    
         foreach ($query as $item) {
             if ($visit) {
-                if ($_SESSION['user']['titulo']) {
+                if ($configuracoes['titulo']) {
                     $horarios[] = [
                         'id'      => $item['id'],
                         'start'   => $item['datainicio'],
                         'end'     => $item['datafim'],
                         'display' => 'background',
-                        'color'   => $_SESSION['user']['cor']
+                        'color'   => $configuracoes['cor']
                     ];
                 } else {
                     $horarios[] = [
@@ -77,7 +78,7 @@ class HomeModel
                         'start'   => $item['datainicio'],
                         'end'     => $item['datafim'],
                         'display' => 'background',
-                        'color'   => $_SESSION['user']['cor']
+                        'color'   => $configuracoes['cor']
                     ];
                 }
             } else {
@@ -87,11 +88,16 @@ class HomeModel
                     'start'   => $item['datainicio'],
                     'end'     => $item['datafim'],
                     'display' => 'background',
-                    'color'   => $_SESSION['user']['cor']
+                    'color'   => $configuracoes['cor']
                 ];
             }
         }
- 
+        
         return $horarios;
 	}
+    
+    public function retornaConfiguracoes($id)
+    {
+        return $this->db->query("SELECT titulo, horario, cor, fimDeSemana FROM Usuarios WHERE id = $id")->fetch(PDO::FETCH_ASSOC);
+    }
 }
