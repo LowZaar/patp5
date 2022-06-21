@@ -2,8 +2,8 @@
 
 namespace patp\Controllers;
 
+use ConfiguracoesModel;
 use patp\Classes\MainController;
-use SolicitacaoModel;
 
 /**
  * home - Controller de exemplo
@@ -17,7 +17,7 @@ use SolicitacaoModel;
  {
     
      /**
-      * @var SolicitacaoModel
+      * @var ConfiguracoesModel
       */
      private $model;
     
@@ -32,10 +32,15 @@ use SolicitacaoModel;
      public function index()
      {
          $configuracoes = $this->model->retornaConfiguracoes();
-         // dd($solicitacoes);
+         
          require ABSPATH . '/views/_includes/header.php';
          require ABSPATH . '/views/_includes/menu.php';
-         require ABSPATH . '/views/solicitacoes/configuracoes-view.php';
+         require ABSPATH . '/views/configuracoes/configuracoes-view.php';
          require ABSPATH . '/views/_includes/footer.php';
+     }
+    
+     public function editar()
+     {
+         echo json_encode($this->model->editarConfiguracoes($_POST));
      }
  }

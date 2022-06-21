@@ -2,6 +2,7 @@
 
 namespace patp\Controllers;
 
+use HomeModel;
 use patp\Classes\MainController;
 /**
  * home - Controller de exemplo
@@ -13,7 +14,7 @@ class HomeController extends MainController
 {
     
     /**
-     * @var mixed|void
+     * @var HomeModel
      */
     private $model;
     
@@ -51,7 +52,7 @@ class HomeController extends MainController
     public function retornaCalendario()
     {
         if (isset($_SESSION['calendar'])) {
-            $return = $this->model->retornaDataCalendario($_SESSION['calendar']);
+            $return = $this->model->retornaDataCalendario($_SESSION['calendar'], true);
         } else {
             $return = $this->model->retornaDataCalendario($_SESSION['user']['id']);
         }
