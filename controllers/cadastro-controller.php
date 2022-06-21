@@ -12,8 +12,14 @@ use patp\Classes\MainModel;
  */
 class CadastroController extends MainController
 {
-
-	public function index()
+    
+    public function __construct($parametros = array())
+    {
+        parent::__construct($parametros);
+        $this->verifyLogin();
+    }
+    
+    public function index()
 	{
 		// Título da página
 		$this->title = 'Cadastro';

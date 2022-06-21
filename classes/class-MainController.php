@@ -8,7 +8,7 @@ namespace patp\Classes;
  * @package TutsupMVC
  * @since 0.1
  */
-class MainController extends UserLogin
+class MainController
 {
 
     /**
@@ -83,8 +83,6 @@ class MainController extends UserLogin
         // Parâmetros
         $this->parametros = $parametros;
         
-        // Verifica o login
-        $this->checkUserLogin();
     } // __construct
     
     /**
@@ -132,4 +130,13 @@ class MainController extends UserLogin
             return;
         } // loadModel
     } // loadModel
+    
+    public function verifyLogin()
+    {
+        if (!empty($_SESSION['user']) && isset($_SESSION['user']['senha']) && isset($_SESSION['user']['email'])) {
+            return true;
+        } else {
+            header('Location: '. HOME_URI . '/login');
+        }
+    }
 } // class MainController
