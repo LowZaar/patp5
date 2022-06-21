@@ -81,7 +81,7 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    let bizhrs = '<?= $_SESSION['user']['horario'] ?>';
+    let bizhrs = '<?= $configuracoes['horario'] ?>';
 
     if (bizhrs == 1) {
       var bizHours = {
@@ -106,7 +106,7 @@
       eventOverlap: false,
       businessHours: bizHours,
       selectConstraint: selConstraint,
-      weekends: <?= $_SESSION['user']['fimDeSemana'] ?>,
+      weekends: <?= $configuracoes['fimDeSemana'] ?>,
       themeSystem: 'bootStrap5',
       buttonIcons: {
         prev: 'chevron-left',
