@@ -53,7 +53,7 @@
                                 
                                 <div class="row form-group">
                                     <div class="col col-md-3">
-                                        <label for="text-input" class="form-control-label">Senha</label>
+                                        <label for="text-input" class="form-control-label">Cor dos horários ocupados</label>
                                     </div>
                                     <div class="col-12 col-md-9">
                                         <input type="color" value="<?=$configuracoes['cor']?>" id="cor" name="cor" class="form-control">
