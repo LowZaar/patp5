@@ -1,13 +1,11 @@
 <style>
-    .fc-event-title {
-        color: #F8F8FF !important;
-    }
+  .fc-event-title {
+    color: #F8F8FF !important;
+  }
 </style>
-
+<?php dump($_SESSION) ?>
 <div class="container-fluid">
   <div class="main-content col-12 d-flex">
-        <?php if (isset($link)) { ?>
-        <?php } ?>
     <div id="calendar" class="align-items-stretch w-100 h-75 pt-5">
     </div>
   </div>
@@ -84,8 +82,21 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    let calendarEl = document.getElementById('calendar');
+    let bizhrs = 1
 
+    if (bizhrs == 0) {
+      var bizHours = {
+        daysOfWeek: [1, 2, 3, 4, 5],
+        startTime: '07:00',
+        endTime: '18:00',
+      }
+
+      var selConstraint = 'businessHours'
+    }else{
+      var businessHours = false
+    }
+
+    let calendarEl = document.getElementById('calendar');
     let calendar = new FullCalendar.Calendar(calendarEl, {
       locale: 'pt-br',
       initialView: 'timeGridWeek',
@@ -94,6 +105,9 @@
       selectable: true,
       selectOverlap: false,
       eventOverlap: false,
+      businessHours: bizHours,
+      selectConstraint: selConstraint,
+      weekends: <?= $_SESSION['user']['fimDeSemana'] ?>,
       themeSystem: 'bootStrap5',
       buttonIcons: {
         prev: 'chevron-left',
@@ -104,7 +118,7 @@
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
       },
-      events: '<?=HOME_URI?>/home/retornaCalendario',
+      events: '<?= HOME_URI ?>/home/retornaCalendario',
       eventClick: function(info) {
 
         console.log('click');
@@ -115,7 +129,9 @@
         $('#eventoFim').val(info.event.end.toLocaleString('pt-BR'))
         modalDetails.modal('show')
       },
+
       select: function(info) {
+
         if (!info.event) {
           let modal = $('#solicitacaoModal').modal({
             keyboard: false
@@ -123,31 +139,31 @@
           $('#horarioInicio').val(info.start.toLocaleString('pt-BR'))
           $('#horarioFim').val(info.end.toLocaleString('pt-BR'))
           modal.modal('show')
-          
+
           $('#save').click(function() {
             let titulo = $('#titulo').val()
-            
+
             if (titulo !== '') {
-                $.ajax({
-                  url: '<?= HOME_URI ?>/solicitacao/criar',
-                  method: 'POST',
-                  data: {
-                      titulo: titulo,
-                      horarioInicio : info.startStr,
-                      horarioFinal : info.endStr
-                  },
-                  success: function(result) {
-                      result = JSON.parse(result)
-                      showNotificatonModal(result.label, result.message, result.type)
-                      $('#titulo').val('')
-                      modal.modal('hide')
-                  }
-                })
+              $.ajax({
+                url: '<?= HOME_URI ?>/solicitacao/criar',
+                method: 'POST',
+                data: {
+                  titulo: titulo,
+                  horarioInicio: info.startStr,
+                  horarioFinal: info.endStr
+                },
+                success: function(result) {
+                  result = JSON.parse(result)
+                  showNotificatonModal(result.label, result.message, result.type)
+                  $('#titulo').val('')
+                  modal.modal('hide')
+                }
+              })
             } else {
-                showNotificatonModal('Erro', 'O Título deve ser preenchido', 'error')
+              showNotificatonModal('Erro', 'O Título deve ser preenchido', 'error')
             }
           })
-        
+
         }
       }
     })
@@ -156,13 +172,13 @@
 </script>
 
 <script>
-    $('.buttonLink').click(function () {
-        let link = document.getElementById('link');
-        link.type="text"
-        link.focus();
-        link.select();
-        document.execCommand("copy");
-        link.type="hidden"
-        alert('O link do seu calendário foi copiado para sua área de transferencia!')
-    })
+  $('.buttonLink').click(function() {
+    let link = document.getElementById('link');
+    link.type = "text"
+    link.focus();
+    link.select();
+    document.execCommand("copy");
+    link.type = "hidden"
+    alert('O link do seu calendário foi copiado para sua área de transferencia!')
+  })
 </script>
