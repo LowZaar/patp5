@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="header-mobile-inner">
                 <a class="logo" href="index.html">
-                    <img src="images/icon/logo.png" alt="CoolAdmin" />
+                    <img src="images/icon/logo.png" alt="" />
                 </a>
                 <button class="hamburger hamburger--slider" type="button">
                     <span class="hamburger-box">
@@ -50,7 +50,7 @@
 <aside class="menu-sidebar d-none d-lg-block">
     <div class="logo">
         <a href="<?= HOME_URI ?>">
-            
+            <img src="<?=HOME_URI?>/views/_uploads/images/logo.jpeg" alt="" />
         </a>
     </div>
     <div class="menu-sidebar__content js-scrollbar1">
@@ -68,15 +68,15 @@
                     </a>
                 </li>
                
-<!--                <li>-->
-<!--                    <a href="--><?//= HOME_URI ?><!--/financeiro/">-->
-<!--                        <i class="fa fa-usd"></i>Financeiro-->
-<!--                    </a>-->
-<!--                </li>-->
+                <li>
+                    <a href="<?= HOME_URI ?>/financeiro/">
+                        <i class="fa fa-usd"></i>Financeiro
+                    </a>
+                </li>
 
                 <li>
-                    <a href="<?= HOME_URI ?>/usuarios/">
-                        <i class="fa fa-users"></i>Usuários
+                    <a href="<?= HOME_URI ?>/login/logout">
+                        <i class="fa fa-sign-out" aria-hidden="true"></i>Logout
                     </a>
                 </li>
             </ul>
@@ -100,33 +100,35 @@
                             </button>
                         </div>
                     <?php } ?>
-                    <form class="form-header" action="" method="POST">
-                        <!-- <input class="au-input au-input--xl" type="text" name="search" placeholder="Search for datas &amp; reports..." />
-                        <button class="au-btn--submit" type="submit">
-                            <i class="zmdi zmdi-search"></i>
-                        </button> -->
+                    <form class="form-header">
+                        <?php if(isset($link)) { ?>
+                            <button type="button" class="buttonLink btn btn-primary" value="<?=$link?>">
+                                <i class="fa fa-share-alt" aria-hidden="true"></i>&nbsp;&nbsp;Compatilhar Calendário
+                            </button>
+                            <input type="hidden" id="link" value="<?=$link?>">
+                       <?php } ?>
                     </form>
                     <div class="header-button">
                         <div class="account-wrap">
                             <div class="account-item clearfix js-item-menu">
                                 <div class="image">
-                                    <img src="<?= HOME_URI ?>/views/_images/logo.png" alt="" />
+                                    <img src="<?= HOME_URI ?>/views/_uploads/images/logo.jpeg" alt="" />
                                 </div>
                                 <div class="content">
-                                    <a class="js-acc-btn" href="#"> Roberto o +++ brabo <i class="fa fa-angle-down"></i></a>
+                                    <a class="js-acc-btn" href="#"> <?=$_SESSION['user']['nome']?> <i class="fa fa-angle-down"></i></a>
                                 </div>
                                 <div class="account-dropdown js-dropdown">
                                     <div class="info clearfix">
                                         <div class="image">
                                             <a href="#">
-                                                <img src="<?= HOME_URI ?>/views/_images/logo.png" alt="" />
+                                                <img src="<?= HOME_URI ?>/views/_uploads/images/logo.jpeg" alt="" />
                                             </a>
                                         </div>
                                         <div class="content">
                                             <h5 class="name">
-                                                <a href="#"><?= $this->userdata['nome'] ?></a>
+                                                <a href="#"><?= $_SESSION['user']['nome'] ?></a>
                                             </h5>
-                                            <span class="email"><?= $this->userdata['email'] ?></span>
+                                            <span class="email"><?= $_SESSION['user']['email'] ?></span>
                                         </div>
                                     </div>
                                     <!-- <div class="account-dropdown__body">
@@ -144,7 +146,7 @@
                                         </div>
                                     </div> -->
                                     <div class="account-dropdown__footer">
-                                        <a href="<?= HOME_URI.'/login/sair' ?>">
+                                        <a href="<?= HOME_URI.'/login/logout' ?>">
                                             <i class="zmdi zmdi-power"></i>Logout
                                         </a>
                                     </div>

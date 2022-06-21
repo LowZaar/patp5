@@ -17,12 +17,6 @@ class LoginController extends MainController
 	{
 		// Título da página
 		$this->title = 'Login';
-
-		// Verifica se o usuário está logado
-		// if ($this->logged_in) {
-		// 	header("Location: ".HOME_URI);
-		// 	exit();
-        // }
 	
         require ABSPATH . '/views/login/login-view.php';
 	}
@@ -33,4 +27,9 @@ class LoginController extends MainController
 	    echo json_encode($retorno);
     }
     
+    public function logout()
+    {
+        session_unset();
+        header('Location: '. HOME_URI . '/login');
+    }
 }

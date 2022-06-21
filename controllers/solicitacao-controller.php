@@ -25,7 +25,7 @@ use SolicitacaoModel;
      {
          parent::__construct($parametros);
          $this->model = $this->loadModel('solicitacao/solicitacao-model');
-    
+         $this->verifyLogin();
      }
     
      public function index()

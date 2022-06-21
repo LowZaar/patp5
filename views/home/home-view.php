@@ -6,8 +6,9 @@
 
 <div class="container-fluid">
   <div class="main-content col-12 d-flex">
+        <?php if (isset($link)) { ?>
+        <?php } ?>
     <div id="calendar" class="align-items-stretch w-100 h-75 pt-5">
-
     </div>
   </div>
 </div>
@@ -152,4 +153,16 @@
     })
     calendar.render();
   })
+</script>
+
+<script>
+    $('.buttonLink').click(function () {
+        let link = document.getElementById('link');
+        link.type="text"
+        link.focus();
+        link.select();
+        document.execCommand("copy");
+        link.type="hidden"
+        alert('O link do seu calendário foi copiado para sua área de transferencia!')
+    })
 </script>

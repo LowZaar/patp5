@@ -21,7 +21,8 @@ class HomeController extends MainController
     {
         parent::__construct($parametros);
         $this->model = $this->loadModel('home/home-model');
-    
+        
+        $this->verifyLogin();
     }
     
     public function index()
@@ -29,18 +30,7 @@ class HomeController extends MainController
         
         // Título da página
         $this->title = 'Home';
-
-        // Verifica se o usuário está logado
-      /*   if (!$this->logged_in) {
-            $this->logout(true);
-            return;
-        }
-
-        // Verifica se o usuário tem permissão
-        if (!$this->possuiPermissao('home', 'visualizar', $this->userdata['tipo_usuario'])) {
-            require_once ABSPATH . '/includes/403.php';
-            return;
-        } */
+        
         
         if (!empty($_GET)) {
            $_SESSION['calendar'] = encrypt_decrypt('decrypt', $_GET['calendar']);
@@ -51,6 +41,8 @@ class HomeController extends MainController
             require ABSPATH . '/views/_includes/footer.php';
         } else {
             unset($_SESSION['calendar']);
+            
+            $link = HOME_URI . '?calendar=' . encrypt_decrypt('encrypt', $_SESSION['user']['id']);
             
             require ABSPATH . '/views/_includes/header.php';
             require ABSPATH . '/views/_includes/menu.php';
