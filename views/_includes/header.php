@@ -37,7 +37,8 @@
     <!-- Jquery JS-->
     <script src="<?= HOME_URI ?>/node_modules/jquery/dist/jquery.min.js"></script>
     <script src="<?= HOME_URI ?>/node_modules/datatables/media/js/jquery.dataTables.min.js"></script>
-    <link rel="stylesheet" href="<?= HOME_URI ?>node_modules/datatables/media/css/jquery.dataTables.min.css">
+    <script src="<?= HOME_URI ?>/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="<?= HOME_URI ?>/node_modules/datatables/media/css/jquery.dataTables.min.css">
 
     <!-- Total Calendar -->
     

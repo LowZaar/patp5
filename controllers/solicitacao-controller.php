@@ -43,4 +43,9 @@ use SolicitacaoModel;
         echo json_encode($this->model->criar($_POST));
      }
 
+
+     public function setStatus()
+     {
+       echo $this->model->setStatus($_POST['idSoc'], $_POST['acao']);
+     }
  }

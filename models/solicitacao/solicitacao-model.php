@@ -19,7 +19,7 @@ class SolicitacaoModel extends MainModel
      * @access public
      */
     public $form_data;
-    
+
     /**
      * $form_msg
      *
@@ -28,7 +28,7 @@ class SolicitacaoModel extends MainModel
      * @access public
      */
     public $form_msg;
-    
+
     /**
      * $db
      *
@@ -37,7 +37,7 @@ class SolicitacaoModel extends MainModel
      * @access public
      */
     public $db;
-    
+
     /**
      * Construtor
      *
@@ -46,10 +46,11 @@ class SolicitacaoModel extends MainModel
      * @since 0.1
      * @access public
      */
-    public function __construct( $db = false ) {
+    public function __construct($db = false)
+    {
         $this->db = $db;
     }
-    
+
     public function retornaSolicitacoes()
     {
         return $this->db->query(
@@ -65,14 +66,16 @@ class SolicitacaoModel extends MainModel
                   s.status = 0
               AND
                   s.datainicio >= NOW()',
-            [$_SESSION['user']['id']])
+            [$_SESSION['user']['id']]
+        )
             ->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function criar($data) {
+    public function criar($data)
+    {
         $datainicio = str_replace('T', ' ', explode('-03:00', $data['horarioInicio'])[0]);
         $datafim = str_replace('T', ' ', explode('-03:00', $data['horarioFinal'])[0]);
-        
+
         if (isset($_SESSION['calendar'])) {
             $post = [
                 'id_usuario'     => $_SESSION['calendar'],
@@ -82,9 +85,9 @@ class SolicitacaoModel extends MainModel
                 'datafim'        => $datafim,
                 'status'         => 0
             ];
-            
+
             $query = $this->db->insert('Solicitacoes', $post);
-    
+
             if ($query) {
                 return [
                     'type' => 'success',
@@ -107,9 +110,9 @@ class SolicitacaoModel extends MainModel
                 'datafim'        => $datafim,
                 'status'         => 1
             ];
-    
+
             $query = $this->db->insert('Solicitacoes', $post);
-    
+
             if ($query) {
                 return [
                     'type' => 'success',
@@ -123,6 +126,20 @@ class SolicitacaoModel extends MainModel
                     'label' => 'Erro'
                 ];
             }
+        }
+    }
+
+    public function setStatus($idSolicitacao, $acao)
+    {
+        if ($acao == 'aceitar') {
+            $query = $this->db->update('Solicitacoes', 'id', $idSolicitacao, ['status' => '1']);
+        } else if ($acao == 'recusar') {
+            $query = $this->db->update('Solicitacoes', 'id', $idSolicitacao, ['status' => '2']);
+
+            if ($query) {
+                return 'true';
+            }
+            return false;
         }
     }
 }
