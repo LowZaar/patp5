@@ -21,7 +21,7 @@
     <script src="<?= HOME_URI ?>/node_modules/ckeditor/ckeditor.js"></script>
 
     <!-- Jquery Mask -->
-<!--    <script src="--><?//= HOME_URI ?><!--/node_modules/jquery-mask-plugin/dist/jquery.mask.min.js"></script>-->
+    <script src="<?= HOME_URI ?>/node_modules/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
 
     <!-- Main JS-->
     <script src="<?= HOME_URI ?>/views/_js/main.js"></script>

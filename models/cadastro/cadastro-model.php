@@ -54,10 +54,10 @@ class CadastroModel extends MainModel
         }
     
         $dados['senha'] = md5($dados['senha']);
-        $dados['titulo'] = 'true';
+        $dados['titulo'] = 1;
         $dados['cor'] = '#D0021B';
-        $dados['fimDeSemana'] = 'true';
-        $dados['horario'] = 'false';
+        $dados['fimDeSemana'] = 1;
+        $dados['horario'] = 0;
         
         try {
             $this->db->insert('Usuarios', $dados);
@@ -73,5 +73,4 @@ class CadastroModel extends MainModel
             'message' => 'Cadastro realizado com sucesso!'
         ];
     }
-    
 }

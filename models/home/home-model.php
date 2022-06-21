@@ -51,7 +51,7 @@ class HomeModel
 		$this->db = $db;
 	}
     
-    public function retornaDataCalendario($id)
+    public function retornaDataCalendario($id, $visit = false)
     {
         $horarios = [];
         
@@ -61,16 +61,37 @@ class HomeModel
         $query = $this->db->query("SELECT * FROM Solicitacoes WHERE id_usuario = $id AND status = 1 AND datainicio BETWEEN '$data_inicio' AND '$data_fim'")->fetchAll(PDO::FETCH_ASSOC);
        
         foreach ($query as $item) {
-            $horarios[] = [
-                'id'      => $item['id'],
-                'title'   => $item['titulo'],
-                'start'   => $item['datainicio'],
-                'end'     => $item['datafim'],
-                'display' => 'background',
-                'color'   => '#D0021B'
-            ];
+            if ($visit) {
+                if ($_SESSION['user']['titulo']) {
+                    $horarios[] = [
+                        'id'      => $item['id'],
+                        'start'   => $item['datainicio'],
+                        'end'     => $item['datafim'],
+                        'display' => 'background',
+                        'color'   => $_SESSION['user']['cor']
+                    ];
+                } else {
+                    $horarios[] = [
+                        'id'      => $item['id'],
+                        'title'   => $item['titulo'],
+                        'start'   => $item['datainicio'],
+                        'end'     => $item['datafim'],
+                        'display' => 'background',
+                        'color'   => $_SESSION['user']['cor']
+                    ];
+                }
+            } else {
+                $horarios[] = [
+                    'id'      => $item['id'],
+                    'title'   => $item['titulo'],
+                    'start'   => $item['datainicio'],
+                    'end'     => $item['datafim'],
+                    'display' => 'background',
+                    'color'   => $_SESSION['user']['cor']
+                ];
+            }
         }
-        
+ 
         return $horarios;
 	}
 }
