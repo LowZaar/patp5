@@ -19,7 +19,7 @@
                             <tbody>
 
                                 <?php foreach ($solicitacoes as $solicitacao) { ?>
-                                    <tr class="tr-shadow" data-id-Solicitacao="<?= $solicitacao['id'] ?>">
+                                    <tr class="tr-shadow" id="id_<?=$solicitacao['id']?>" data-id-Solicitacao="<?= $solicitacao['id'] ?>">
                                         <td class="nomeSolicitacao"><?= $solicitacao['nome_solicitante'] ?></td>
                                         <td class="tituloSolicitacao"><?= $solicitacao['titulo'] ?></td>
                                         <td class="dataInicioSolicitacao"><?= date('d/m/Y H:i:s', strtotime($solicitacao['datainicio'])) ?></td>
@@ -132,15 +132,17 @@
             url: "<?= HOME_URI ?>/solicitacao/setStatus",
             type: 'POST',
             data: {
-                'idSoc': idSolicitacao,
-                'acao': 'aceitar'
+                idSoc: idSolicitacao,
+                acao: 'aceitar'
             },
             success: function(response) {
                 if (response == 'true') {
                     $('#modalAcao').modal('hide')
                     $('#modalAcao').find('form-control').val('')
 
-                    location.reload()
+                    $(`#id_${idSolicitacao}`).remove()
+                    
+                    showNotificatonModal('', 'Solicitação de agendamento aprovada com sucesso!', 'success')
                 }
             }
         })
@@ -162,7 +164,7 @@
                     $('#modalAcao').modal('hide')
                     $('#modalAcao').find('.form-control').val('')
 
-                    location.reload()
+                    $(`#id_${idSolicitacao}`).remove()
                 }
             }
         })

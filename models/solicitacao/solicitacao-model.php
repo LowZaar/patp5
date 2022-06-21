@@ -65,10 +65,9 @@ class SolicitacaoModel extends MainModel
               AND
                   s.status = 0
               AND
-                  s.datainicio >= NOW()',
+                   s.datainicio >= NOW()',
             [$_SESSION['user']['id']]
-        )
-            ->fetchAll(PDO::FETCH_ASSOC);
+        )->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function criar($data)
@@ -135,11 +134,10 @@ class SolicitacaoModel extends MainModel
             $query = $this->db->update('Solicitacoes', 'id', $idSolicitacao, ['status' => '1']);
         } else if ($acao == 'recusar') {
             $query = $this->db->update('Solicitacoes', 'id', $idSolicitacao, ['status' => '2']);
-
-            if ($query) {
-                return 'true';
-            }
-            return false;
         }
+        if ($query) {
+            return 'true';
+        }
+        return false;
     }
 }

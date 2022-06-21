@@ -19,6 +19,8 @@ class HomeController extends MainController
     
     public function __construct($parametros = array())
     {
+        // Título da página
+        $this->title = 'Home';
         parent::__construct($parametros);
         $this->model = $this->loadModel('home/home-model');
         
@@ -27,11 +29,6 @@ class HomeController extends MainController
     
     public function index()
     {
-        
-        // Título da página
-        $this->title = 'Home';
-        
-        
         if (!empty($_GET)) {
            $_SESSION['calendar'] = encrypt_decrypt('decrypt', $_GET['calendar']);
             

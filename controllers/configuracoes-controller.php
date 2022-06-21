@@ -13,7 +13,7 @@ use SolicitacaoModel;
  */
 
 
- class SolicitacaoController extends MainController
+ class ConfiguracoesController extends MainController
  {
     
      /**
@@ -24,29 +24,18 @@ use SolicitacaoModel;
      public function __construct($parametros = array())
      {
          parent::__construct($parametros);
-         $this->model = $this->loadModel('solicitacao/solicitacao-model');
+         $this->model = $this->loadModel('configuracoes/configuracoes-model');
          $this->verifyLogin();
-         $this->title = 'Solicitações';
+         $this->title = 'Configurações';
      }
     
      public function index()
      {
-         $solicitacoes = $this->model->retornaSolicitacoes();
-         
+         $configuracoes = $this->model->retornaConfiguracoes();
+         // dd($solicitacoes);
          require ABSPATH . '/views/_includes/header.php';
          require ABSPATH . '/views/_includes/menu.php';
-         require ABSPATH . '/views/solicitacoes/solicitacoes-view.php';
+         require ABSPATH . '/views/solicitacoes/configuracoes-view.php';
          require ABSPATH . '/views/_includes/footer.php';
-     }
-    
-     public function criar()
-     {
-        echo json_encode($this->model->criar($_POST));
-     }
-
-
-     public function setStatus()
-     {
-       echo $this->model->setStatus($_POST['idSoc'], $_POST['acao']);
      }
  }

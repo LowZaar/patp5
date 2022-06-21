@@ -16,19 +16,12 @@ class CadastroController extends MainController
     public function __construct($parametros = array())
     {
         parent::__construct($parametros);
-        $this->verifyLogin();
     }
     
     public function index()
 	{
 		// Título da página
 		$this->title = 'Cadastro';
-
-		// Verifica se o usuário está logado
-		if ($this->logged_in) {
-			header("Location: ".HOME_URI); 
-			exit();
-        }
 		
 		$parametros = ( func_num_args() >= 1 ) ? func_get_arg(0) : array();
 	

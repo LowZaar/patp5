@@ -46,7 +46,7 @@ class CadastroModel extends MainModel
     
     public function cadastrar($dados)
     {
-        if (empty($dados['email']) || empty($dados['senha']) || empty($dados['nome']) || empty($dados['cpfcnpj']) || empty($dados['endereco'])) {
+        if (empty($dados['email']) || empty($dados['senha']) || empty($dados['nome']) || empty($dados['cpfcnpj']) || empty($dados['telefone'])) {
             return [
                 'status' => 'error',
                 'message' => 'Preencha todos os campos para realizar o cadastro!'
@@ -54,6 +54,10 @@ class CadastroModel extends MainModel
         }
     
         $dados['senha'] = md5($dados['senha']);
+        $dados['titulo'] = 'true';
+        $dados['cor'] = '#D0021B';
+        $dados['fimDeSemana'] = 'true';
+        $dados['horario'] = 'false';
         
         try {
             $this->db->insert('Usuarios', $dados);

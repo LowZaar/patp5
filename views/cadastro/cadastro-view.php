@@ -18,19 +18,20 @@
             <input id='email' placeholder="E-mail" name="email" type="email" required/>
             <input id='password' placeholder="Senha" name="password" type="password" required/>
             <input id='nome' placeholder="Nome completo" name="nome" type="text" required />
-            <input id='cpfcnpj' placeholder="CPF ou CNPJ" name="cpfcnpj" type="text" required/>
-            <input id='endereco' placeholder="Endereço" name="endereco" type="text" required/>
+            <input id='cpfcnpj' class="cpf" placeholder="CPF" name="cpfcnpj" type="text" required/>
+            <input id='telefone' class="cel" placeholder="Celular" name="telefone" type="text" required/>
             
             <!--<h6><a href="#">Esqueceu sua senha?</a></h6>-->
             <div class="clear"></div>
             <div id="errorlogin"></div>
             <input type="button" id="submitForm" value="Cadastrar-se">
         </form>
-        <p>Já possui uma conta? <a href="/login">Logue-se!</a></p>
+        <p>Já possui uma conta? <a href="<?=HOME_URI?>/login">Logue-se!</a></p>
     </div>
 </div>
 <!--//main-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="<?= HOME_URI ?>/node_modules/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
 <script>
     //verifica cadastro
     $('#submitForm').click(function () {
@@ -44,7 +45,7 @@
                 senha: $('#password').val(),
                 nome: $('#nome').val(),
                 cpfcnpj: $('#cpfcnpj').val(),
-                endereco: $("#endereco").val()
+                telefone: $("#telefone").val()
             },
             success: function (data) {
                 let result = JSON.parse(data);
@@ -59,6 +60,13 @@
         })
     })
 
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".cpf").mask("000.000.000-00");
+        $(".cel").mask("(00)00000-0000");
+    })
 </script>
 </body>
 </html>
