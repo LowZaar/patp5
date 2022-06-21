@@ -69,8 +69,8 @@
                 </li>
                
                 <li>
-                    <a href="<?= HOME_URI ?>/financeiro/">
-                        <i class="fa fa-usd"></i>Financeiro
+                    <a href="<?= HOME_URI ?>/configuracoes/">
+                        <i class="fa fa-cogs" aria-hidden="true"></i> Configurações
                     </a>
                 </li>
 
