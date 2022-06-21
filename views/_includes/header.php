@@ -10,8 +10,6 @@
     <!-- Title Page-->
     <title><?= $this->title ?></title>
 
-    <link rel="shortcut icon" href="<?= HOME_URI ?>/views/_images/favicon.ico">
-
     <!-- Fontfaces CSS-->
     <link href="<?= HOME_URI ?>/views/_css/font-face.css" rel="stylesheet" media="all">
     <link href="<?= HOME_URI ?>/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet" media="all">
