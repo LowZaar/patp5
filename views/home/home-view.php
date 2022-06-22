@@ -5,7 +5,7 @@
 </style>
 <div class="container-fluid">
   <div class="main-content col-12 d-flex">
-    <div id="calendar" class="align-items-stretch w-100 h-75 pt-5">
+    <div id="calendar" class="align-items-stretch w-100 h-75 ">
     </div>
   </div>
 </div>
@@ -89,15 +89,19 @@
         startTime: '07:00',
         endTime: '19:00',
       }
-
+      var configMintime = '07:00'
+      var configMaxtime = '19:00'
       var selConstraint = 'businessHours'
-    }else{
+    } else {
+      var configMintime = '01:00'
+      var configMaxtime = '24:59'
       var businessHours = false
     }
 
     let calendarEl = document.getElementById('calendar');
     let calendar = new FullCalendar.Calendar(calendarEl, {
       locale: 'pt-br',
+      aspectRatio: 2,
       initialView: 'timeGridWeek',
       initialDate: new Date(),
       allDaySlot: true,
@@ -106,8 +110,16 @@
       eventOverlap: false,
       businessHours: bizHours,
       selectConstraint: selConstraint,
+      slotMinTime: configMintime,
+      slotMaxTime: configMaxtime,
+      slotLabelFormat: {
+        hour: '2-digit',
+        minute: '2-digit',
+        omitZeroMinute: false,
+        meridiem: 'short',
+        hour12: false
+      },
       weekends: <?= $configuracoes['fimDeSemana'] ?>,
-      themeSystem: 'bootStrap5',
       buttonIcons: {
         prev: 'chevron-left',
         next: 'chevron-right'
