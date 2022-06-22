@@ -21,26 +21,26 @@
                         <i class="fas fa-tachometer-alt"></i>Dashboard
                     </a>
                 </li>
-                    <li>
-                        <a href="#">
-                            <i class="fas fa-users"></i>Contas
-                        </a>
-                        <ul class="list-unstyled navbar__sub-list js-sub-list" style="display: block;">
-                            <li>
-                                <a href="<?= HOME_URI ?>/contas/">Visualizar</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="<?= HOME_URI ?>/financeiro/">
-                            <i class="fas fa-usd"></i>Financeiro
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?= HOME_URI ?>/usuarios/">
-                            <i class="fas fa-users"></i>Usuários
-                        </a>
-                    </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-users"></i>Contas
+                    </a>
+                    <ul class="list-unstyled navbar__sub-list js-sub-list" style="display: block;">
+                        <li>
+                            <a href="<?= HOME_URI ?>/contas/">Visualizar</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="<?= HOME_URI ?>/financeiro/">
+                        <i class="fas fa-usd"></i>Financeiro
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= HOME_URI ?>/usuarios/">
+                        <i class="fas fa-users"></i>Usuários
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -48,9 +48,10 @@
 
 <!-- MENU SIDEBAR-->
 <aside class="menu-sidebar d-none d-lg-block">
-    <div class="logo">
-        <a href="<?= HOME_URI ?>">
-            <img src="<?=HOME_URI?>/views/_uploads/images/logo.jpeg" alt="" />
+    <div class="logo mt-4 justify-content-center">
+
+        <a href="<?= HOME_URI ?>" class="mb-4">
+            <img src="<?= HOME_URI ?>/views/_uploads/images/logo.jpg" alt="" class="img-logo" style="height: 90px;" />
         </a>
     </div>
     <div class="menu-sidebar__content js-scrollbar1">
@@ -67,7 +68,7 @@
                         <i class="fa fa-sticky-note-o" aria-hidden="true"></i> Solicitações Pendentes
                     </a>
                 </li>
-               
+
                 <li>
                     <a href="<?= HOME_URI ?>/configuracoes/">
                         <i class="fa fa-cogs" aria-hidden="true"></i> Configurações
@@ -101,27 +102,25 @@
                         </div>
                     <?php } ?>
                     <form class="form-header">
-                        <?php if(isset($link)) { ?>
-                            <button type="button" class="buttonLink btn btn-primary" value="<?=$link?>">
+                        <?php if (isset($link)) { ?>
+                            <button type="button" class="buttonLink btn btn-primary" value="<?= $link ?>">
                                 <i class="fa fa-share-alt" aria-hidden="true"></i>&nbsp;&nbsp;Compatilhar Calendário
                             </button>
-                            <input type="hidden" id="link" value="<?=$link?>">
-                       <?php } ?>
+                            <input type="hidden" id="link" value="<?= $link ?>">
+                        <?php } ?>
                     </form>
                     <div class="header-button">
                         <div class="account-wrap">
                             <div class="account-item clearfix js-item-menu">
-                                <div class="image">
-                                    <img src="<?= HOME_URI ?>/views/_uploads/images/logo.jpeg" alt="" />
-                                </div>
                                 <div class="content">
-                                    <a class="js-acc-btn" href="#"> <?=$_SESSION['user']['nome']?> <i class="fa fa-angle-down"></i></a>
+                                    <i class="fa fa-user-circle" aria-hidden="true"></i>
+                                    <a class="js-acc-btn" href="#"> <?= $_SESSION['user']['nome'] ?> <i class="fa fa-angle-down"></i></a>
                                 </div>
                                 <div class="account-dropdown js-dropdown">
                                     <div class="info clearfix">
                                         <div class="image">
                                             <a href="#">
-                                                <img src="<?= HOME_URI ?>/views/_uploads/images/logo.jpeg" alt="" />
+                                                <img src="<?= HOME_URI ?>/views/_uploads/images/logo.jpg" alt="" />
                                             </a>
                                         </div>
                                         <div class="content">
@@ -146,7 +145,7 @@
                                         </div>
                                     </div> -->
                                     <div class="account-dropdown__footer">
-                                        <a href="<?= HOME_URI.'/login/logout' ?>">
+                                        <a href="<?= HOME_URI . '/login/logout' ?>">
                                             <i class="zmdi zmdi-power"></i>Logout
                                         </a>
                                     </div>
