@@ -2,6 +2,10 @@
   .fc-event-title {
     color: #F8F8FF !important;
   }
+
+  body {
+    overflow-y: hidden;
+  }
 </style>
 <div class="container-fluid">
   <div class="main-content col-12 d-flex">

@@ -47,7 +47,7 @@
 </header>
 
 <!-- MENU SIDEBAR-->
-<aside class="menu-sidebar d-none d-lg-block">
+<aside class="menu-sidebar d-none d-lg-block" style="overflow-y: hidden;">
     <div class="logo mt-4 justify-content-center">
 
         <a href="<?= HOME_URI ?>" class="mb-4">
